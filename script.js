@@ -5,9 +5,8 @@ createGrid(16);
 
 const changeGridBtn = document.querySelector('.changeGrid');
 const clearGridBtn = document.querySelector('.clearGrid');
-const rainbowBtn = document.querySelector('.rainbow');
-const normalBtn = document.querySelector('.normal');
 const eraseBtn = document.querySelector('.erase');
+const normalBtn = document.querySelector('.normal'); 
 
 changeGridBtn.addEventListener('click', () => {
     result = prompt('What resolution do you want? The higher, the smaller the individual squares.');
@@ -31,13 +30,15 @@ clearGridBtn.addEventListener('click', ()=> {
 
 })
 
-normalBtn.addEventListener('click', ()=> {
-    changeGridColors('black');
-})
 
 eraseBtn.addEventListener('click', ()=> {
     changeGridColors('white');
 })
+
+normalBtn.addEventListener('click', () => {
+    changeGridColors('black');
+})
+
 
 
 
