@@ -11,7 +11,7 @@ const normalBtn = document.querySelector('.normal');
 let color = 'black';
 
 changeGridBtn.addEventListener('click', () => {
-    result = prompt('What resolution do you want? The higher, the smaller the individual squares.');
+    result = prompt('What resolution do you want? (1-100) E.G the number of individual squares for height/width in the box.');
     count = parseInt(result);
     if (isNaN(count) || count > 100) {
         alert('Resolution is too high (>100) or you did not enter a valid number!');
@@ -74,6 +74,7 @@ function createGrid(count) {
     // should remove the previous event listener here...
     grids.forEach((grid) => {
         grid.addEventListener('mouseover', changeColor);
+        grid.addEventListener('mouseenter', changeColor);
     })
 
 }
