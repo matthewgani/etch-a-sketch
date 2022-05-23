@@ -8,6 +8,8 @@ const clearGridBtn = document.querySelector('.clearGrid');
 const eraseBtn = document.querySelector('.erase');
 const normalBtn = document.querySelector('.normal'); 
 
+let color = 'black';
+
 changeGridBtn.addEventListener('click', () => {
     result = prompt('What resolution do you want? The higher, the smaller the individual squares.');
     count = parseInt(result);
@@ -32,11 +34,11 @@ clearGridBtn.addEventListener('click', ()=> {
 
 
 eraseBtn.addEventListener('click', ()=> {
-    changeGridColors('white');
+    color = 'white';
 })
 
 normalBtn.addEventListener('click', () => {
-    changeGridColors('black');
+    color = 'black';
 })
 
 
@@ -67,7 +69,12 @@ function createGrid(count) {
             rowContainer.appendChild(grid);
         }
     }
-    changeGridColors('black');
+    const grids = document.querySelectorAll('.grid');
+    // console.log(grids);
+    // should remove the previous event listener here...
+    grids.forEach((grid) => {
+        grid.addEventListener('mouseover', changeColor);
+    })
 
 }
 function resetGrid(){
@@ -77,14 +84,25 @@ function resetGrid(){
     })
 }
 
-function changeGridColors(color) {
-    const grids = document.querySelectorAll('.grid');
-    // console.log(grids);
-    // should remove the previous event listener here...
-    grids.forEach((grid) => {
-        grid.addEventListener('mouseover', ()=> {
-            grid.style.backgroundColor = color;
-        })
-    })
+// better way to do this would be to setup the listener once when creating the grid,
+// the function when setting the listener would then use a global variable to decide the color to change the grid to
+// results in only 1 event listener for each grid
+
+
+// function changeGridColors(color) {
+//     const grids = document.querySelectorAll('.grid');
+//     // console.log(grids);
+//     // should remove the previous event listener here...
+//     grids.forEach((grid) => {
+//         grid.addEventListener('mouseover', ()=> {
+//             grid.style.backgroundColor = color;
+//         })
+//     })
+// }
+
+// learned from one of the top odin in etch a sketch
+function changeColor(e) {
+    // e.target is the object that triggered the event
+    e.target.style.backgroundColor = color;
 }
 
